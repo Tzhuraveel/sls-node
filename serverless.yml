@@ -1,14 +1,47 @@
+org: timofii
+app: todo-list
+
 service: sls-node
 frameworkVersion: '3'
+
+plugins:
+  - serverless-dotenv-plugin
+  - serverless-offline
 
 provider:
   name: aws
   runtime: nodejs18.x
 
 functions:
-  api:
-    handler: index.handler
+  getTodos:
+    handler: src/handler/get-todos.handler
     events:
       - httpApi:
-          path: /
+          path: /todos
           method: get
+
+
+  getTodo:
+    handler: src/handler/get-todo.handler
+    events:
+      - httpApi:
+          path: /todos/{todoId}
+          method: get
+  createTodo:
+    handler: src/handler/create-todo.handler
+    events:
+      - httpApi:
+          path: /todos
+          method: post
+  updateTodo:
+    handler: src/handler/update-todo.handler
+    events:
+      - httpApi:
+          path: /todos/{todoId}
+          method: patch
+  deleteTodo:
+    handler: src/handler/delete-todo.handler
+    events:
+      - httpApi:
+          path: /todos/{todoId}
+          method: delete

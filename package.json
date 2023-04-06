@@ -4,8 +4,22 @@
   "description": "sls serverless",
   "main": "index.js",
   "scripts": {
+    "start:dev": "sls offline start --state dev",
+    "start:prod": "sls offline start --stage prod",
+    "deploy:dev": "sls deploy --stage dev",
+    "deploy:prod": "sls deploy --stage prod",
+    "remove:dev": "sls deploy --stage dev",
+    "remove:prod": "sls deploy --stage prod",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "timofii",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "mongodb": "^5.2.0",
+    "serverless-dotenv-plugin": "^6.0.0"
+  },
+  "devDependencies": {
+    "serverless": "^3.30.0",
+    "serverless-offline": "^12.0.4"
+  }
 }
